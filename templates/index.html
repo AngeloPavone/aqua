@@ -5,11 +5,13 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}"/>
     </head>
     <body>
-        <h3><u>Hello {{content}}!</u></h3>
+        <h3><u>Hello {{name}}!</u></h3>
 
         <p><label for="Chatbox">Chat Box</label></p>
-        <textarea cols="16" rows="8" form="Chatbox" type="text" name="chat"></textarea>
-        <form action="/form-handler" name="Chatbox" id="Chatbox" method="POST"/>        
+        <form action="/form-handler" name="Chatbox" id="Chatbox" method="POST">    
+            <textarea cols="16" rows="8" form="Chatbox" type="text" name="chat" class="chatbox"></textarea>
+            <input type="submit" class="submitbutton">
+        </form>
         
 
     </body>
