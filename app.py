@@ -17,7 +17,7 @@ def handle_data():
     time = now.strftime("%H:%M  %m/%d/%Y") #Get date and time of request
 
 
-    chatLog = open("chats.txt", 'a') #open text file and save data from form
+    chatLog = open("chat-log.txt", 'a') #open text file and save data from form
     chatLog.write(request.form['chat'] + " " + time + "\n")
     chatLog.close()
 
