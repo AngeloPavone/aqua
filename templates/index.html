@@ -7,13 +7,10 @@
     <body>
         <h3><u>Hello {{content}}!</u></h3>
 
-        <form action="/form-handler" name="Chatbox" method="POST">
-            <h3>Text Box</h3>
-            <div id="chat">
-                Chat: <input type="text" name="chat"><br>
-            </div>
-            
-        </form>
+        <p><label for="Chatbox">Chat Box</label></p>
+        <textarea cols="16" rows="8" form="Chatbox" type="text" name="chat"></textarea>
+        <form action="/form-handler" name="Chatbox" id="Chatbox" method="POST"/>        
+        
 
     </body>
 

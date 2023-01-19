@@ -10,13 +10,11 @@ def home() -> object:
     """docstring"""
     return render_template("index.html", name="Aqua")
 
-
 @app.route("/form-handler", methods=["GET", "POST"])
 def handle_data() -> None:
     """docstring"""
     now = datetime.now()
     time = now.strftime("%H:%M  %m/%d/%Y") # Get date and time of request
-
     with open("chat-log.txt", "a", encoding="utf8") as f: # open text file and save data from form
         f.write(request.form['chat'] + " " + time + "\n")
 
