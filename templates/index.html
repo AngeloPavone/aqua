@@ -1,6 +1,22 @@
 <!-- /templates/index.html -->
+<!DOCTYPE html>
 <html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}"/>
+    </head>
     <body>
         <h3><u>Hello {{name}}!</u></h3>
+
+        <form action="/form-handler" name="Chatbox" method="POST">
+            <h3>Text Box</h3>
+            <div id="chat">
+                Chat: <input type="text" name="chat"><br>
+            </div>
+            
+        </form>
+
     </body>
+
+
 </html>
+
