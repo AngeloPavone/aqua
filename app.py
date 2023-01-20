@@ -1,8 +1,11 @@
 from datetime import datetime
-from flask import Flask, render_template, request, Response
+from flask_socketio import SocketIO
+from flask import Flask, render_template, request
 
 
 app = Flask("aqua")
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
 
 
 @app.route("/")
@@ -26,7 +29,9 @@ def handle_data() -> None:
 
 def main() -> None:
     """docstring"""
+    pass
 
 
 if __name__ == '__main__':
+    socketio.run(app)
     main()
