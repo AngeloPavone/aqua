@@ -10,28 +10,23 @@ socketio = SocketIO(app)
 
 @app.route("/")
 def home() -> object:
-    """docstring"""
-    return render_template("index.html", name="Aqua")
+    """starts the home page"""
+    return render_template("index.html")
 
-@app.route("/form-handler", methods=["GET", "POST"])
+@app.route("/form_handler", methods=["GET", "POST"])
 def handle_data() -> None:
-    """docstring"""
+    """store chat into a text file"""
     now = datetime.now()
-    time = now.strftime("%H:%M  %m/%d/%Y") # Get date and time of request
-    with open("chat-log.txt", "a", encoding="utf8") as f: # open text file and save data from form
-        f.write(request.form['chat'] + " " + time + "\n")
-
-    with open("chat-log.txt", "r", encoding="utf8") as f:
-        lines = f.readlines()
-
-
-    return render_template("index.html", content=lines)
+    time = now.strftime("%H:%M  %m/%d/%Y") # Get date and time of request.
+    with open("chat_log.txt", "a", encoding="utf8") as chat_log: # Open text file and save data from form.
+        chat_log.write(request.form['chat'] + " " + time + "\n")
+    
+    return render_template("index.html")
 
 def main() -> None:
-    """docstring"""
-    pass
+    """start socketio"""
+    socketio.run(app, debug=True)
 
 
 if __name__ == '__main__':
-    socketio.run(app)
     main()
