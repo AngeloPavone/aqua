@@ -1,18 +1,11 @@
 <!-- /templates/index.html -->
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}"/>
-    </head>
-    <body>
-        <form action="/form_handler" name="Chatbox" id="Chatbox" method="POST">    
-            <textarea form="Chatbox" type="text" name="chat" class="chatbox" autofocus=true></textarea>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}"/>
+    <div>
+        <form action="/chat" name="chat" id="chat" method="POST">
+            <textarea form="chat" type="text" name="chatbox" class="chatbox" autofocus=true></textarea>
             <a><input type="submit" class="submitbutton" id="sendchatmessage"></a>
         </form>
-        
-
-    </body>
-
-
+    </div>
 </html>
-

@@ -1,6 +1,7 @@
 from datetime import datetime
-from flask_socketio import SocketIO
-from flask import Flask, render_template, request
+
+from flask import Flask, render_template, request, url_for
+from flask_socketio import SocketIO # pyright: ignore
 
 
 app = Flask("aqua")
@@ -9,18 +10,18 @@ socketio = SocketIO(app)
 
 
 @app.route("/")
-def home() -> object:
+def home() -> str:
     """starts the home page"""
     return render_template("index.html")
 
-@app.route("/form_handler", methods=["GET", "POST"])
-def handle_data() -> None:
+@app.route("/chat", methods=["GET", "POST"])
+def handle_data() -> str:
     """store chat into a text file"""
     now = datetime.now()
     time = now.strftime("%H:%M  %m/%d/%Y") # Get date and time of request.
     with open("chat_log.txt", "a", encoding="utf8") as chat_log: # Open text file and save data from form.
-        chat_log.write(request.form['chat'] + " " + time + "\n")
-    
+        chat_log.write(request.form['chatbox'] + " " + time + "\n")
+
     return render_template("index.html")
 
 def main() -> None:
