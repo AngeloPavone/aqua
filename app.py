@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO
 
 
-app = Flask("aqua")
+app = Flask(__name__)
 app.config['SECRET_KEY'] = "dontworryaboutitbruh"
 socketio = SocketIO(app)
 
@@ -11,9 +11,13 @@ socketio = SocketIO(app)
 def home() -> str:
     return render_template("index.html")
 
-@socketio.on("message")
-def handle_message(data) -> None:
-    print(f"Message received: {data}")
+def message_confirm(methods=["GET","POST"]) -> None:
+    print(f"Message recieved")
+
+@socketio.on("message_event")
+def handle_message_event(json, methods=["GET","POST"]) -> None:
+    print(f"Event received: {str(json)}")
+    socketio.emit("my response", json, callback=message_confirm)
 
 def main() -> None:
     socketio.run(app, debug=True)

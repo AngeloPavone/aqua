@@ -8,19 +8,32 @@
             <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}"/>
 
             <div>
-                <form action="" name="chat" id="chat" method="POST">
-                    <textarea form="chat" type="text" name="chatbox" class="chatbox" autofocus=true></textarea>
-                    <input type="submit" class="submitbutton" id="sendchatmessage">
+                <form action="" class="chatbox" method="POST">
+                    <textarea type="text" id="message" class="message" autofocus></textarea>
+                    <button type="submit">Send</button>
                 </form>
             </div>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
             <script type="text/javascript" charset="utf-8">
-                var socket = io();
-                socket.on("connect", function() {
-                    socket.emit("message", {data: "Im Connected")};
-                });
+                var socket = io.connect('http://' + document.domain + ':' + location.port);
+                      socket.on('connect', function(){
+                socket.emit('message_event',{
+                  data: 'User Connected'
+                })
+                var form = $('form.chatbox').on('submit', function(e){
+                  e.preventDefault()
+                  let user_input = $('#message').val()
+                  socket.emit('message_event',{
+                    message : user_input
+                  })
+                  $('#message').val( '' ).focus()
+                })
+              })
+              socket.on('my response', function(msg) {
+                console.log(msg)
+              })
             </script>
         </body>
 </html>
