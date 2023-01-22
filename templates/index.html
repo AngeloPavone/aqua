@@ -9,7 +9,7 @@
 
             <div>
                 <form action="" class="chatbox" method="POST">
-                    <textarea type="text" form="chatbox" id="message" class="message" autofocus=true></textarea>
+                    <textarea type="text" id="message" class="message" autofocus></textarea>
                     <button type="submit">Send</button>
                 </form>
             </div>
@@ -22,13 +22,13 @@
                 socket.emit('message_event',{
                   data: 'User Connected'
                 })
-                var form = $('chatbox').on('submit', function(e){
+                var form = $('form.chatbox').on('submit', function(e){
                   e.preventDefault()
-                  let user_input = $('message').val()
+                  let user_input = $('#message').val()
                   socket.emit('message_event',{
                     message : user_input
                   })
-                  $('message').val( '' ).focus()
+                  $('#message').val( '' ).focus()
                 })
               })
               socket.on('my response', function(msg) {
