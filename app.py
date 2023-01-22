@@ -16,7 +16,7 @@ def message_confirm(methods=["GET","POST"]) -> None:
 
 @socketio.on("message_event")
 def handle_message_event(json, methods=["GET","POST"]) -> None:
-    print(f"Received message: {str(json)}")
+    print(f"Event received: {str(json)}")
     socketio.emit("my response", json, callback=message_confirm)
 
 def main() -> None:
