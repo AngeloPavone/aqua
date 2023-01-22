@@ -1,4 +1,4 @@
-.chatbox {
+.message {
     width:  72%;
     top: 95%;
     height: 40px;
@@ -7,7 +7,7 @@
 
 }
 
-#sendchatmessage {
+.submitbutton {
     top: 95%;
     left: 73%;
     height: 40px;
