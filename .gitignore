@@ -1,5 +1,5 @@
 # project specific
-chat_log.txt
+chat_log.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
