@@ -22,7 +22,6 @@ def handle_message_event(json, methods=["GET","POST"]) -> dict:
     with open("chat_log.json", "a") as chat_log:
         chat_log.write(str(json) + "\n")
 
-
 def main() -> None:
     socketio.run(app, debug=True)
 
