@@ -10,7 +10,7 @@
             <div>
                 <form action="" class="chatbox" method="POST">
                     <textarea type="text" id="message" class="message" autofocus></textarea>
-                    <button type="submit">Send</button>
+                    <button type="submit" class="sendmessage">Send</button>
                 </form>
             </div>
 
@@ -20,13 +20,13 @@
                 var socket = io.connect('http://' + document.domain + ':' + location.port);
                       socket.on('connect', function(){
                 socket.emit('message_event',{
-                  data: 'User Connected'
+                  network_log: 'User Connected'
                 })
                 var form = $('form.chatbox').on('submit', function(e){
                   e.preventDefault()
                   let user_input = $('#message').val()
                   socket.emit('message_event',{
-                    message : user_input
+                    chat_log: user_input
                   })
                   $('#message').val( '' ).focus()
                 })
