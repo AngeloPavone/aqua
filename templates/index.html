@@ -6,9 +6,10 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}"/>
     </head>
         <body>
-            <div>
-                <p class="chat_message">
-                </p>
+            <div class="chat_history">
+                {% for message in chat_history %}
+                {{ message }}
+                {% endfor %}
             </div>
             <div>
                 <form action="" class="chatbox" method="POST">
