@@ -18,7 +18,7 @@ def message_confirm(methods=["GET","POST"]) -> None:
     print(f"Message recieved")
 
 @socketio.on("message_event")
-def handle_message_event(json, methods=["GET","POST"]):
+def handle_message_event(json, methods=["GET","POST"]) -> None:
     print(f"Event received: {str(json)}")
     for message in json:
         chat_history.append(json[message])
