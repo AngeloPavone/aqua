@@ -1,14 +1,28 @@
-.message {
-    width:  72%;
-    top: 95%;
-    height: 40px;
-    position: absolute;
-    resize: none;
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.sendmessage {
-    top: 95%;
-    left: 73%;
-    height: 40px;
-    position: absolute;
+.message-container {
+  display: flex;
+  align-self: flex-start;
+  margin: 10px 0;
+}
+
+.left-aligned {
+  justify-content: flex-start;
+}
+
+.right-aligned {
+  justify-content: flex-end;
+}
+
+.message-bubble {
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: lightgray;
+  max-width: 50%;
 }
