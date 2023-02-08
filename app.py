@@ -4,28 +4,26 @@ from flask_socketio import SocketIO
 
 app = Flask(__name__, static_folder="static")
 app.config['SECRET_KEY'] = "dontworryaboutitbruh"
-socketio = SocketIO(app)
-
-
-chat_history = []
+io = SocketIO(app)
 
 
 @app.route("/", methods=["GET", "POST"])
-def home() -> str:
+def index() -> str:
     return render_template("index.html")
 
-def message_confirm(methods=["GET","POST"]) -> None:
-    print(f"Message recieved")
 
-@socketio.on("message_event")
-def handle_message_event(json, methods=["GET","POST"]) -> None:
-    print(f"Event received: {str(json)}")
-    for message in json:
-        chat_history.append(json[message])
-    socketio.emit("my response", chat_history, callback=message_confirm)
+def message_confirm(message, methods=["GET","POST"]) -> None:
+    print(f"message: {message}")
+
+
+@io.on('send_message')
+def handle_message(message) -> None:
+    message_confirm(message)
+    io.emit('receive_message', {'message': message}, broadcast=True)
+
 
 def main() -> None:
-    socketio.run(app, debug=True)
+    io.run(app, debug=True)
 
 if __name__ == '__main__':
     main()
