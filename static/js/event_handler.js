@@ -1,18 +1,26 @@
-var socket = io.connect('http://' + document.domain + ':' + location.port);
-socket.on('connect', function(){
-    socket.emit('message_event',{
-        network_log: 'User Connected'
-    })
-        var form = $('form.chatbox').on('submit', function(e){
-            e.preventDefault()
-            let user_input = $('#message').val()
-            socket.emit('message_event',{
-                chat_log: user_input
-            })
-            $('#message').val("").focus()
-        })
-    })
-    socket.on('my response', function(msg) {
-        console.log(msg)
-        $('.chat_history').text(msg)
-})
+// Connect to socket.IO server
+const socket = io('http://127.0.0.1:5000')
+
+
+// Send the message to the server
+document.querySelector('form.chatbox').addEventListener('submit', function(e) {
+	e.preventDefault();
+	const message = document.getElementById('message-input').value;
+	socket.emit('send_message', message);
+	document.getElementById('message-input').value = '';
+});
+
+// Receive a message from the server
+socket.on('receive_message', function(data) {
+	const chatContainer = document.getElementById('chat-container');
+	const messageContainer = document.createElement('div');
+	messageContainer.classList.add('message-container');
+	messageContainer.classList.add(data.position);
+	
+	const messageBubble = document.createElement('div');
+	messageBubble.classList.add('message-bubble');
+	messageBubble.innerHTML = data.message;
+	
+	messageContainer.appendChild(messageBubble);
+	chatContainer.appendChild(messageContainer);
+  });
