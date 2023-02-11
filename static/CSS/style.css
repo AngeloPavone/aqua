@@ -6,6 +6,10 @@
   margin: 0 auto;
 }
 
+.message-input {
+
+}
+
 .message-container {
   display: flex;
   align-self: flex-start;
