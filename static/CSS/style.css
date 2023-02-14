@@ -16,6 +16,7 @@
 }
 
 .message-send {
+  visibility: hidden;
   position: absolute;
   bottom: 1.55%;
   right: 27%;
