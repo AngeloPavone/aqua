@@ -6,6 +6,21 @@
   margin: 0 auto;
 }
 
+.message-input {
+  resize: none;
+  display: flex;
+  position: absolute;
+  bottom: 1%;
+  flex-direction: column;
+  width: 70%
+}
+
+.message-send {
+  position: absolute;
+  bottom: 1.55%;
+  right: 27%;
+}
+
 .message-container {
   display: flex;
   align-self: flex-start;

@@ -1,14 +1,24 @@
 // Connect to socket.IO server
 const socket = io('http://127.0.0.1:5000')
 
-
 // Send the message to the server
-document.querySelector('form.chatbox').addEventListener('submit', function(e) {
-	e.preventDefault();
-	const message = document.getElementById('message-input').value;
-	socket.emit('send_message', message);
-	document.getElementById('message-input').value = '';
-});
+// TODO: Implement input sanitization so you cannot send empty messages 
+const messageInput = document.getElementById('message-input');
+if (document.getElementById('message-input').value != null) {
+	document.querySelector('form.chatbox').addEventListener('submit', function(e) {
+		e.preventDefault();
+		message = messageInput.value
+		socket.emit('send_message', message);
+		document.getElementById('message-input').value = null;
+	});
+
+	messageInput.addEventListener('keydown', function(e) {
+		if (e.key === "Enter" && !e.shiftKey) {
+			e.preventDefault();
+			messageInput.form.dispatchEvent(new Event('submit'));
+		}
+	});
+}
 
 // Receive a message from the server
 socket.on('receive_message', function(data) {

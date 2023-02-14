@@ -7,19 +7,13 @@
     </head>
     <body>
 	    <div class="chat-container" id="chat-container">
-		    <div class="message-container left-aligned">
-			    <div class="message-bubble">
-			    </div>
-		    </div>
-		    <div class="message-container right-aligned">
-			    <div class="message-bubble">
-			    </div>
-		    </div>
+		    <div class="message-container left-aligned"></div>
+		    <div class="message-container right-aligned"></div>
 	    </div>
 	    <div>
 		    <form action="" class="chatbox" method="POST">
 			    <textarea type="text" id="message-input" class="message-input" autofocus></textarea>
-			    <button type="submit" class="sendmessage">Send</button>
+			    <button type="submit" id="message-send" class="message-send">Send</button>
 		    </form>
 	    </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
