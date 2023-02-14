@@ -1,6 +1,8 @@
 .chat-container {
+  height: calc(100vh - 80px);
   display: flex;
-  flex-direction: column;
+  overflow-y: auto;
+  flex-direction: column-reverse;
   align-items: center;
   width: 29%;
   margin: 0 auto;
@@ -17,7 +19,7 @@
   height: 16px;
 }
 
-.message-send {
+.message-send-button {
   visibility: hidden;
   position: absolute;
   bottom: 1.55%;
@@ -26,19 +28,19 @@
 
 .message-container {
   display: flex;
-  align-self: flex-start;
   margin: 10px 0;
-}
-
-.left-aligned {
-  justify-content: flex-start;
 }
 
 .right-aligned {
   justify-content: flex-end;
 }
 
+.left-aligned {
+  justify-content: flex-start;
+}
+
 .message-bubble {
+  bottom: 1%;
   padding: 10px 20px;
   border-radius: 20px;
   background-color: lightblue;

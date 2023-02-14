@@ -31,5 +31,5 @@ socket.on('receive_message', function(data) {
 	messageBubble.innerHTML = data.message;
 	
 	messageContainer.appendChild(messageBubble);
-	chatContainer.appendChild(messageContainer);
+	chatContainer.insertBefore(messageContainer, chatContainer.firstChild);
   });
