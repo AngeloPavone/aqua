@@ -2,17 +2,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  width: 29%;
   margin: 0 auto;
 }
 
 .message-input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 100%;
+  width: 29%;
   resize: none;
-  display: flex;
-  position: absolute;
-  bottom: 1%;
-  flex-direction: column;
-  width: 70%
+  padding: 8px;
+  height: 16px;
 }
 
 .message-send {
@@ -39,6 +41,6 @@
 .message-bubble {
   padding: 10px 20px;
   border-radius: 20px;
-  background-color: lightgray;
+  background-color: lightblue;
   max-width: 50%;
 }
