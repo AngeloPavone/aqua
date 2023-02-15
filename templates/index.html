@@ -10,12 +10,10 @@
 		    <div class="message-container left-aligned"></div>
 		    <div class="message-container right-aligned"></div>
 	    </div>
-	    <div>
 		    <form action="" class="chatbox" method="POST">
 			    <textarea type="text" id="message-input" class="message-input" autofocus></textarea>
 			    <button type="submit" id="message-send-button" class="message-send-button">Send</button>
 		    </form>
-	    </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
     	<script src="{{ url_for('static', filename='js/event_handler.js') }}"></script>

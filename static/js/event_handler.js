@@ -25,11 +25,11 @@ socket.on('receive_message', function(data) {
 	const messageContainer = document.createElement('div');
 	messageContainer.classList.add('message-container');
 	messageContainer.classList.add(data.position);
-	
+
 	const messageBubble = document.createElement('div');
 	messageBubble.classList.add('message-bubble');
 	messageBubble.innerHTML = data.message;
-	
+
 	messageContainer.appendChild(messageBubble);
 	chatContainer.insertBefore(messageContainer, chatContainer.firstChild);
   });
