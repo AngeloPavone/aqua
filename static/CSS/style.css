@@ -38,6 +38,7 @@
 
 .message-bubble {
   bottom: 1%;
+  margin-top: 15px;
   padding: 7px 12px;
   border-radius: 5px;
   overflow-wrap: break-word;
@@ -51,6 +52,7 @@
 
 .right-aligned {
   bottom: 1%;
+  margin-top: 15px;
   padding: 7px 12px;
   border-radius: 5px;
   overflow-wrap: break-word;
@@ -63,6 +65,7 @@
 
 .left-aligned {
   bottom: 1%;
+  margin-top: 15px;
   padding: 7px 12px;
   border-radius: 5px;
   overflow-wrap: break-word;
