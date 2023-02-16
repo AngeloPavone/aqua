@@ -21,6 +21,7 @@ messageInput.addEventListener('keydown', function(e) {
 
 // Receive a message from the server
 socket.on('receive_message', function(data) {
+	console.log((Math.random()+1).toString(36).slice(2,18)); // use this to create random user id's inside of some kind of socket.on('connect') function
 	const chatContainer = document.getElementById('chat-container');
 	const messageBubble = document.createElement('div');
 	data.position = data.postion || "message-bubble"
