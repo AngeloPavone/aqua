@@ -23,6 +23,7 @@ messageInput.addEventListener('keydown', function(e) {
 socket.on('receive_message', function(data) {
 	const chatContainer = document.getElementById('chat-container');
 	const messageBubble = document.createElement('div');
+	data.position = data.postion || "message-bubble"
 	messageBubble.classList.add(data.position)
 
 	messageBubble.innerHTML = data.message;
