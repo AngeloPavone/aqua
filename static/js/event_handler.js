@@ -22,14 +22,10 @@ messageInput.addEventListener('keydown', function(e) {
 // Receive a message from the server
 socket.on('receive_message', function(data) {
 	const chatContainer = document.getElementById('chat-container');
-	const messageContainer = document.createElement('div');
-	messageContainer.classList.add('message-container');
-	messageContainer.classList.add(data.position);
-
 	const messageBubble = document.createElement('div');
-	messageBubble.classList.add('message-bubble');
+	messageBubble.classList.add(data.position)
+
 	messageBubble.innerHTML = data.message;
 
-	messageContainer.appendChild(messageBubble);
-	chatContainer.insertBefore(messageContainer, chatContainer.firstChild);
+	chatContainer.insertBefore(messageBubble, chatContainer.firstChild);
   });
