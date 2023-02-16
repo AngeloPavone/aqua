@@ -2,4 +2,4 @@
 
 My simple chat app project :)
 
-![image](https://user-images.githubusercontent.com/101136391/219495576-ae6dcd5f-9101-4192-b6fb-0cb702764087.png)
+![image](https://user-images.githubusercontent.com/101136391/219495697-fbfe9d0a-6a0f-4475-8265-e11cfe485962.png)
