@@ -1,3 +1,7 @@
+ body {
+  background-color: #222222;
+
+ }
 .chat-container {
   height: calc(100vh - 80px);
   display: flex;
@@ -9,6 +13,7 @@
 }
 
 .message-input {
+  outline: none !important;
   position: absolute;
   bottom: 1%;
   left: 50%;
@@ -16,8 +21,14 @@
   width: 29%;
   resize: none;
   padding: 8px;
-  height: 16px;
-}
+  height: 20px;
+  background-color: #181818;
+  -webkit-text-fill-color: #eeeeee;
+  border-radius: 4px;
+  caret-color: #eeeeee;
+  font-size: 15px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+} 
 
 .message-send-button {
   visibility: hidden;
@@ -42,8 +53,10 @@
 .message-bubble {
   bottom: 1%;
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   overflow-wrap: break-word;
-  background-color: lightblue;
+  background-color: lightcoral;
   max-width: 50%;
+  font-size: 15px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
