@@ -20,7 +20,7 @@ def user_id_confirm(user_id, methods=["GET","POST"]) -> None:
 @io.on('send_message')
 def handle_message(message) -> None:
     io.emit('receive_message', {'message': message})
-    print({'message': message})
+    print(message)
 
 
 @io.on('connect')
