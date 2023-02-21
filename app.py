@@ -12,14 +12,21 @@ def index() -> str:
     return render_template("index.html")
 
 
-def message_confirm(message, methods=["GET","POST"]) -> None:
-    print(f"message: {message}")
+@io.on('user_id')
+def user_id_confirm(user_id, methods=["GET","POST"]) -> None:
+    print(user_id)
 
 
 @io.on('send_message')
 def handle_message(message) -> None:
-    message_confirm(message)
-    io.emit('receive_message', {'message': message}, broadcast=True)
+    io.emit('receive_message', {'message': message})
+    print({'message': message})
+
+
+@io.on('connect')
+def test_connection(user_id) -> None:
+    io.emit('connected', {'user_id': user_id})
+    user_id_confirm(user_id)
 
 
 def main() -> None:
