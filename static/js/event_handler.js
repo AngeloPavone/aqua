@@ -5,9 +5,11 @@ const socket = io('http://127.0.0.1:5000')
 const messageInput = document.getElementById('message-input');
 document.querySelector('form.chatbox').addEventListener('submit', function(e) {
 	e.preventDefault();
-	message = messageInput.value
-	if (message != null && message.trim().length !== 0) {
-		socket.emit('send_message', message);
+	const messageValue = {
+		message: messageInput.value
+	}
+	if (messageValue['message'] != null && messageValue['message'].trim().length !== 0) {
+		socket.emit('send_message', messageValue);
 	}
 	document.getElementById('message-input').value = null;
 });
@@ -19,7 +21,7 @@ messageInput.addEventListener('keydown', function(e) {
 	}
 });
 
-socket.on('connected', function(userID) {
+socket.on('connected', function() {
 	const newUserID = {
 		userID: (Math.random()+1).toString(36).slice(2,18) // randomly generates a simple userID
 	}
@@ -33,7 +35,7 @@ socket.on('receive_message', function(data) {
 	data.position = data.postion || "message-bubble"
 	messageBubble.classList.add(data.position)
 
-	messageBubble.innerHTML = data.message;
+	messageBubble.innerHTML = data.message['message'];
 
 	chatContainer.insertBefore(messageBubble, chatContainer.firstChild);
   });
