@@ -21,11 +21,8 @@ messageInput.addEventListener('keydown', function(e) {
 	}
 });
 
-socket.on('connected', function() {
-	const newUserID = {
-		userID: (Math.random()+1).toString(36).slice(2,18) // randomly generates a simple userID
-	}
-	socket.emit('user_id', newUserID);
+socket.on('connected', function(userID) {
+	socket.emit('user_id', userID);
 });
 
 // Receive a message from the server
