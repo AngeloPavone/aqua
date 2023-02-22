@@ -1,14 +1,14 @@
 // Connect to socket.IO server
 const socket = io('http://127.0.0.1:5000')
 
-let user_id = null
+let client_id = null
 
 // Send the message to the server
 const messageInput = document.getElementById('message-input');
 document.querySelector('form.chatbox').addEventListener('submit', function(e) {
 	e.preventDefault();
 	const messageValue = {
-		users: user_id,
+		users: client_id,
 		message: messageInput.value
 	}
 	if (messageValue['message'] != null && messageValue['message'].trim().length !== 0) {
@@ -25,15 +25,20 @@ messageInput.addEventListener('keydown', function(e) {
 });
 
 socket.on('connected', function(userID) {
-	user_id = userID
-	socket.emit('user', user_id);
+	client_id = userID
+	socket.emit('user', client_id);
 });
 
 // Receive a message from the server
 socket.on('receive_message', function(data) {
 	const chatContainer = document.getElementById('chat-container');
 	const messageBubble = document.createElement('div');
-	data.position = data.postion || "message-bubble"
+	data['user']['user_id'] = 'WBwEsQ-T97MtQ0LgAAAr'
+	if(data['user']['user_id'] === client_id['user_id']) {
+		data.position = 'right-aligned';
+	} else {
+		data.position = 'left-aligned';
+	}
 	messageBubble.classList.add(data.position)
 	messageBubble.innerHTML = data['message'][data['message'].length - 1];
 
