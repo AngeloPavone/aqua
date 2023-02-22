@@ -35,8 +35,7 @@ socket.on('receive_message', function(data) {
 	const messageBubble = document.createElement('div');
 	data.position = data.postion || "message-bubble"
 	messageBubble.classList.add(data.position)
-
-	messageBubble.innerHTML = data['message'];
+	messageBubble.innerHTML = data['message'][data['message'].length - 1];
 
 	chatContainer.insertBefore(messageBubble, chatContainer.firstChild);
   });
