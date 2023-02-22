@@ -27,6 +27,7 @@ socket.on('connected', function(userID) {
 
 // Receive a message from the server
 socket.on('receive_message', function(data) {
+	console.log(data)
 	const chatContainer = document.getElementById('chat-container');
 	const messageBubble = document.createElement('div');
 	data.position = data.postion || "message-bubble"

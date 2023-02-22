@@ -8,6 +8,9 @@ app.config['SECRET_KEY'] = '35b0327899affed2bef8b9d11b046beccbe9dcabcdd58bfa21f2
 io = SocketIO(app)
 
 
+user_messages = {}
+
+
 @app.route("/", methods=["GET", "POST"])
 def index() -> str:
     return render_template("index.html")
@@ -20,14 +23,16 @@ def user_id_confirm(user_id, methods=["GET","POST"]) -> None:
 
 
 @io.on('send_message')
-def handle_message(message) -> None:
-    emit('receive_message', {'message': message}, broadcast=True)
-    print(message)
+def handle_message(data) -> None:
+    user_messages.setdefault(data['user_id'], []).append(data['message'])
+    emit('receive_message', {'user_id': data['user_id'], 'message': data['message']}, broadcast=True)
+    print(data)
 
 
 @io.on('connect')
 def user_connected(user_id) -> None:
-    emit('connected', {'user_id': request.sid})
+    user_id = request.sid
+    emit('connected', {'user_connected': user_id})
     print(user_id)
 
 
