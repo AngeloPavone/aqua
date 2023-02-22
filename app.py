@@ -37,7 +37,7 @@ def handle_message(data) -> None:
 # asign a user_id when socketio emits a 'connect' event
 @io.on('connect')
 def user_connected(user_id) -> None:
-    user_id = request.sid
+    user_id = request.sid #pyright: ignore
     emit('connected', {'user_id': user_id})
 
 
