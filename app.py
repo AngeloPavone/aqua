@@ -20,8 +20,7 @@ def index() -> str:
 @io.on('user_id')
 def user_id_confirm(user_id, methods=["GET","POST"]) -> None:
     if user_id:
-        pass
-        # print(user_id)
+        print(user_id)
 
 
 # recieve the message from the client
@@ -42,6 +41,7 @@ def user_connected(user_id) -> None:
 
 
 def main() -> None:
+    # io.run(app, host='0.0.0.0', debug=True) # use this to host it on lan for testing
     io.run(app, debug=True)
 
 if __name__ == '__main__':
