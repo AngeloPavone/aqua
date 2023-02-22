@@ -33,7 +33,6 @@ socket.on('connected', function(userID) {
 socket.on('receive_message', function(data) {
 	const chatContainer = document.getElementById('chat-container');
 	const messageBubble = document.createElement('div');
-	data['user']['user_id'] = 'WBwEsQ-T97MtQ0LgAAAr'
 	if(data['user']['user_id'] === client_id['user_id']) {
 		data.position = 'right-aligned';
 	} else {
