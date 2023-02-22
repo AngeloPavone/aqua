@@ -1,9 +1,10 @@
-from flask import Flask, render_template
-from flask_socketio import SocketIO
+from flask import Flask, render_template, request
+from flask_socketio import SocketIO, emit
 
 
 app = Flask(__name__, static_folder="static")
-app.config['SECRET_KEY'] = "dontworryaboutitbruh"
+# TODO: regenerate secret key and move it out of codebase (can be generated using < python -c 'import secrets; print(secrets.token_hex())' >)
+app.config['SECRET_KEY'] = '35b0327899affed2bef8b9d11b046beccbe9dcabcdd58bfa21f292ff2a4d34c7'
 io = SocketIO(app)
 
 
@@ -14,19 +15,20 @@ def index() -> str:
 
 @io.on('user_id')
 def user_id_confirm(user_id, methods=["GET","POST"]) -> None:
-    print(user_id)
+    if user_id:
+        print(user_id)
 
 
 @io.on('send_message')
 def handle_message(message) -> None:
-    io.emit('receive_message', {'message': message})
+    emit('receive_message', {'message': message}, broadcast=True)
     print(message)
 
 
 @io.on('connect')
-def test_connection(user_id) -> None:
-    io.emit('connected', {'user_id': user_id})
-    user_id_confirm(user_id)
+def user_connected(user_id) -> None:
+    emit('connected', {'user_id': request.sid})
+    print(user_id)
 
 
 def main() -> None:
