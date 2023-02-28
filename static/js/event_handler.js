@@ -26,8 +26,8 @@ messageInput.addEventListener('keydown', function(e) {
 	}
 });
 
-socket.on('connected', function(userID) {
-	client_id = userID
+socket.on('connected', function(data) {
+	client_id = data.user
 	socket.emit('user_id', client_id);
 });
 
@@ -38,7 +38,7 @@ socket.on('receive_message', function(data) {
 	const username = document.getElementById('username');
 	const otherUserName = document.getElementById('other-username')
 
-	if(data['user']['user_id'] === client_id['user_id']) {
+	if(data['user'] === client_id) {
 		data.position = 'right-aligned';
 	} else {
 		data.position = 'left-aligned';
