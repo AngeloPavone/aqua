@@ -29,21 +29,30 @@ messageInput.addEventListener('keydown', function(e) {
 socket.on('connected', function(userID) {
 	client_id = userID
 	socket.emit('user_id', client_id);
-	const username = document.getElementById('username');
-	username.innerHTML = String(client_id);
 });
 
 // Receive a message from the server
 socket.on('receive_message', function(data) {
 	const chatContainer = document.getElementById('chat-container');
 	const messageBubble = document.createElement('div');
+	const username = document.getElementById('username');
+	const otherUserName = document.getElementById('other-username')
+
 	if(data['user']['user_id'] === client_id['user_id']) {
 		data.position = 'right-aligned';
 	} else {
 		data.position = 'left-aligned';
 	}
+
+	let lastMessage = data.messages[data.messages.length - 1];
 	messageBubble.classList.add(data.position);
-	messageBubble.innerHTML = data['message'][data['message'].length - 1];
+	messageBubble.innerHTML = lastMessage;
+	username.innerHTML = String(client_id);
 
 	chatContainer.insertBefore(messageBubble, chatContainer.firstChild);
+
+	for(const i in data) {
+		console.log(i, data[i])
+	}
+
   });
