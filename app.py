@@ -9,6 +9,7 @@ io = SocketIO(app)
 
 
 user_messages = []
+users = {}
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -20,24 +21,26 @@ def index() -> str:
 @io.on('user_id')
 def user_id_confirm(user_id, methods=["GET","POST"]) -> None:
     if user_id:
-        print(user_id)
+        # print('\x1b[6;30;42m' + 'Success!' + '\x1b[0m') # -> color text example and codes https://i.stack.imgur.com/6otvY.png
+        print('\x1b[1;32;40m' + 'CONNECTED: ' + '\x1b[0m' + user_id)
 
 
 # recieve the message from the client
 @io.on('send_message')
 def handle_message(data) -> None:
     user_messages.append(data['message'])
-    user_id = data['users']
-    users = {'user': user_id, 'message': user_messages}
+    user_id = data['user']
+    username = None
+    users = {'user': user_id, 'username': username, 'messages': user_messages}
     emit('receive_message', users, broadcast=True)
     print(users)
 
 
-# asign a user_id when socketio emits a 'connect' event
+# assign a user_id when a 'connect' event is emited
 @io.on('connect')
 def user_connected(user_id) -> None:
-    user_id = request.sid #pyright: ignore
-    emit('connected', {'user_id': user_id})
+    user_id = request.sid #pyright: ignore -> this is a false error
+    emit('connected', user_id)
 
 
 def main() -> None:
