@@ -38,8 +38,8 @@ def handle_message(data) -> None:
 # assign a user_id when a 'connect' event is emited
 @io.on('connect')
 def user_connected(data) -> None:
-    users['user'] = request.sid #pyright: ignore -> this is a false error
-    users['username'] = "tempUsername:::" + users['user']
+    users['user'] = request.sid
+    users['username'] = "tempUsername:" + users['user']
     emit('connected', users)
 
 
